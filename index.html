@@ -382,11 +382,11 @@
                             <div class="space-y-3 pt-2">
                                 <div>
                                     <label class="block text-xs text-slate-300 font-semibold mb-1">Supabase URL</label>
-                                    <input type="text" id="db-url" placeholder="https://fpykekkdjocmpaklypwx.supabase.co" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <input type="text" id="db-url" value="https://crvzjjrbplukptjyjpeo.supabase.co" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs text-slate-300 font-semibold mb-1">Supabase Anon Key</label>
-                                    <input type="password" id="db-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <input type="password" id="db-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNydnpqanJicGx1a3B0anlqcGVvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDI5MzgsImV4cCI6MjA5OTk3ODkzOH0.tNmbfsroHet-KhD2u3esr2XFxEP5q3k5zmIhoCVAcdA" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                 </div>
                             </div>
 
@@ -616,8 +616,8 @@
         }
 
         // ================= CONFIG & API UTILITIES =================
-        const DEFAULT_SUPABASE_URL = "https://fpykekkdjocmpaklypwx.supabase.co"; 
-        const DEFAULT_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlpZ3FldGR6d2NqZnFhbGNscWtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNzU2NzQsImV4cCI6MjA5OTk1MTY3NH0.ACbwdtByZsyN2gW5VH86temS5SKLw9vD5xyBs4B80Wo"; 
+        const DEFAULT_SUPABASE_URL = "https://crvzjjrbplukptjyjpeo.supabase.co"; 
+        const DEFAULT_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNydnpqanJicGx1a3B0anlqcGVvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDI5MzgsImV4cCI6MjA5OTk3ODkzOH0.tNmbfsroHet-KhD2u3esr2XFxEP5q3k5zmIhoCVAcdA"; 
 
         const defaultInventory = [
             {id: 1, sku: 'SKU-000', name: 'InsulatorZ9Y', category: 'BahanBaku', in_stock: 250000, out_stock: 0, quantity: 250000, min_stock: 212263, rack_row: 1, rack_col: 1, rack_level: 2, waktu_masuk: '2026-07-05T12:00', waktu_keluar: ''},
@@ -702,7 +702,7 @@
             document.getElementById('db-url').value = savedUrl;
             document.getElementById('db-key').value = savedKey;
 
-            if (savedUrl && savedKey && savedKey !== "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZweWtla2tkam9jbXBha2x5cHd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MTQwMjQsImV4cCI6MjA5ODE5MDAyNH0.eWDACXjSwHN1XK035A_5ZSEL18iNBsTpUZMcDogQYkM") {
+            if (savedUrl && savedKey && savedKey !== "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNydnpqanJicGx1a3B0anlqcGVvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDI5MzgsImV4cCI6MjA5OTk3ODkzOH0.tNmbfsroHet-KhD2u3esr2XFxEP5q3k5zmIhoCVAcdA") {
                 try {
                     supabaseClient = window.supabase.createClient(savedUrl, savedKey);
                     isUsingCloud = true;
