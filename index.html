@@ -55,7 +55,6 @@
             color: white !important; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
         }
-        /* Custom styling for input datetime */
         input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
             cursor: pointer;
@@ -74,7 +73,7 @@
                     <i class="fa-solid fa-warehouse text-3xl"></i>
                 </div>
                 <h2 class="text-2xl font-extrabold text-white">NEXUS <span class="text-indigo-400">WMS</span></h2>
-                <p class="text-slate-400 text-xs mt-2">Masuk untuk accessing sistem gudang</p>
+                <p class="text-slate-400 text-xs mt-2">Masuk untuk mengakses sistem gudang</p>
             </div>
             
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
@@ -176,7 +175,6 @@
                     </div>
                 </div>
 
-                <!-- Cloud Notice -->
                 <div id="notice-box" class="mt-auto bg-amber-500/5 border border-amber-500/20 rounded-xl p-3 text-[11px] text-amber-300">
                     <h4 class="font-bold flex items-center gap-1 mb-1"><i class="fa-solid fa-triangle-exclamation"></i> Sinkronisasi Offline</h4>
                     <p class="leading-relaxed">Data saat ini tersimpan lokal. Buka tab <strong>Pengaturan Cloud Database</strong> untuk mengaktifkan sinkronisasi antar HP &amp; Laptop.</p>
@@ -213,7 +211,7 @@
                                 <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
                             </div>
                             <div>
-                                <p class="text-xs text-slate-400 font-medium">Stok Menipis / Kritis</p>
+                                <p class="text-xs text-slate-400 font-medium">Peringatan Stock Kritis</p>
                                 <h3 id="stat-low-stock" class="text-2xl font-bold text-amber-400 mt-1">0</h3>
                             </div>
                         </div>
@@ -249,7 +247,7 @@
 
                         <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col h-[384px]">
                             <h4 class="text-base font-bold text-white mb-4 flex items-center gap-2">
-                                <i class="fa-solid fa-circle-exclamation text-amber-500"></i> Peringatan Stok
+                                <i class="fa-solid fa-circle-exclamation text-amber-500"></i> Peringatan Stock Kritis
                             </h4>
                             <div id="dashboard-stock-alerts" class="space-y-3 flex-1 overflow-y-auto pr-1">
                                 <div class="text-center py-8 text-slate-500 text-xs">Mengambil informasi kondisi stok...</div>
@@ -269,8 +267,8 @@
                                 </div>
                                 <div class="flex items-center space-x-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
                                     <button onclick="set3DFilter('all')" class="filter-3d-btn active px-3 py-1 text-xs font-semibold rounded-lg text-slate-400">Semua</button>
-                                    <button onclick="set3DFilter('kritis')" class="filter-3d-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-400">Stok Kritis</button>
-                                    <button onclick="set3DFilter('aman')" class="filter-3d-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-400">Stok Aman</button>
+                                    <button onclick="set3DFilter('kritis')" class="filter-3d-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-400">Stock Kritis</button>
+                                    <button onclick="set3DFilter('aman')" class="filter-3d-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-400">Stock aman</button>
                                     <button onclick="set3DFilter('overstock')" class="filter-3d-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-400">Overstock</button>
                                 </div>
                             </div>
@@ -283,19 +281,19 @@
                                     
                                     <div class="flex items-center space-x-2">
                                         <span class="w-3.5 h-3.5 rounded-sm bg-blue-500 inline-block border border-blue-400/30"></span>
-                                        <span class="text-slate-300">Overstock (&gt; 861.923 unit)</span>
+                                        <span class="text-slate-300">Overstock (&gt; 602.160 unit)</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
                                         <span class="w-3.5 h-3.5 rounded-sm bg-emerald-500 inline-block border border-emerald-400/30"></span>
-                                        <span class="text-slate-300">Stok Aman (212.264 unit)</span>
+                                        <span class="text-slate-300">Stock aman (≥ 212.264 unit)</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
                                         <span class="w-3.5 h-3.5 rounded-sm bg-amber-500 inline-block border border-amber-400/30"></span>
-                                        <span class="text-slate-300">Stok Kritis (&lt; 212.263 unit)</span>
+                                        <span class="text-slate-300">Stock Kritis (&lt; 212.263 unit)</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
                                         <span class="w-3.5 h-3.5 rounded-sm bg-rose-500 inline-block border border-rose-400/30"></span>
-                                        <span class="text-slate-300">Stok Habis (0 unit)</span>
+                                        <span class="text-slate-300">Stock habis (0 unit)</span>
                                     </div>
                                 </div>
                                 
@@ -317,6 +315,21 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- RINGKASAN AKUMULASI STOK PER RAK (BARIS 1 - 4) -->
+                    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <div>
+                                <h4 class="text-base font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-layer-group text-indigo-400"></i> Ringkasan Akumulasi Stok Rak (Baris 1 - 4)
+                                </h4>
+                                <p class="text-xs text-slate-400 mt-0.5">Penjumlahan stok 3 Tier (Level 1-3) untuk 1 Kolom Rak (Kapasitas Maksimal 602.160 unit/rak)</p>
+                            </div>
+                        </div>
+                        <div id="rack-summary-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Dimuat dinamis via JS -->
                         </div>
                     </div>
                 </section>
@@ -350,9 +363,8 @@
                                         <th class="px-6 py-4">Nama Produk</th>
                                         <th class="px-6 py-4">Kategori</th>
                                         <th class="px-6 py-4">Lokasi Rak</th>
-                                        <th class="px-6 py-4">Barang Masuk</th>
-                                        <th class="px-6 py-4">Barang Keluar</th>
-                                        <th class="px-6 py-4 text-center">Sisa Stok</th>
+                                        <th class="px-6 py-4 text-center">Unit Tersedia (Tier Ini)</th>
+                                        <th class="px-6 py-4 text-center">Status Inventory</th>
                                         <th class="px-6 py-4 text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -422,7 +434,7 @@
         </div>
     </div>
 
-    <!-- ================= MODERN MODAL FORM (BARANG MASUK / KELUAR) ================= -->
+    <!-- ================= MODERN MODAL FORM ================= -->
     <div id="item-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300">
             <div class="bg-slate-950/60 px-6 py-4 border-b border-slate-800/80 flex items-center justify-between">
@@ -440,7 +452,6 @@
                         <label class="block text-xs font-semibold text-slate-300 mb-1.5">SKU / Kode Unik Barang <span class="text-rose-500">*</span></label>
                         <div class="relative">
                             <select id="form-sku" name="sku" onchange="autoFillProduct()" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition appearance-none cursor-pointer">
-                                <!-- Opsi SKU dimuat via JS (0-10) -->
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
                                 <i class="fa-solid fa-chevron-down text-xs"></i>
@@ -450,7 +461,6 @@
                     <div>
                         <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Produk <span class="text-rose-500">*</span></label>
                         <div class="relative">
-                            <!-- Dropdown list sesuai permintaan -->
                             <select id="form-name" name="name" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition appearance-none cursor-pointer">
                                 <option value="">-- Pilih Nama Produk --</option>
                                 <option value="BusiZ9Y(Dummy)">BusiZ9Y(Dummy)</option>
@@ -483,7 +493,6 @@
                     </div>
                 </div>
 
-                <!-- SPLIT BARANG MASUK & KELUAR & MINIMUM -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-950/40 p-3 rounded-xl border border-slate-850">
                     <div>
                         <label for="form-in" class="block text-xs font-semibold text-slate-400 mb-1.5">Qty Masuk <span class="text-rose-500">*</span></label>
@@ -494,12 +503,11 @@
                         <input type="number" id="form-out" name="out_stock" required min="0" oninput="calculateLiveStock()" placeholder="0" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition">
                     </div>
                     <div>
-                        <label for="form-min-stock" class="block text-xs font-semibold text-slate-400 mb-1.5">Batas Min Stok <span class="text-rose-500">*</span></label>
+                        <label for="form-min-stock" class="block text-xs font-semibold text-slate-400 mb-1.5">Batas Min Stok RAK <span class="text-rose-500">*</span></label>
                         <input type="number" id="form-min-stock" name="min_stock" required min="0" placeholder="212263" value="212263" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition">
                     </div>
                 </div>
 
-                <!-- WAKTU MASUK & WAKTU KELUAR -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="form-waktu-masuk" class="block text-xs font-semibold text-slate-400 mb-1.5">Waktu Barang Masuk <span class="text-rose-500">*</span></label>
@@ -511,9 +519,8 @@
                     </div>
                 </div>
 
-                <!-- LIVE PREVIEW HASIL HITUNG SISA STOK -->
                 <div class="text-right px-2">
-                    <p class="text-xs text-slate-400">Estimasi Sisa Stok Akhir: <span id="live-stock-preview" class="font-bold text-indigo-400">0</span> unit</p>
+                    <p class="text-xs text-slate-400">Estimasi Sisa Stok Akhir (Slot ini): <span id="live-stock-preview" class="font-bold text-indigo-400">0</span> unit</p>
                 </div>
 
                 <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4">
@@ -541,7 +548,6 @@
                             </select>
                         </div>
                         <div>
-                            <!-- Level diubah menjadi hanya Tier 1, Tier 2, Tier 3 -->
                             <label for="form-rack-level" class="block text-[11px] text-slate-400 mb-1">Level (1 - 3)</label>
                             <select id="form-rack-level" name="rack_level" required class="w-full px-2 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-200 focus:outline-none">
                                 <option value="1">Tier 1</option>
@@ -552,7 +558,6 @@
                     </div>
                 </div>
 
-                <!-- ERROR MESSAGE CONTAINER SUDAH DILETAKKAN DI SEBELAH KIRI TOMBOL BATAL -->
                 <div class="flex justify-end items-center space-x-3 pt-4 border-t border-slate-800/80">
                     <div id="modal-error-message" class="hidden text-rose-500 text-[11px] font-bold bg-rose-500/10 border border-rose-500/20 px-3 py-2 rounded-lg flex-1">
                         <i class="fa-solid fa-triangle-exclamation mr-1"></i> <span id="modal-error-text"></span>
@@ -581,11 +586,10 @@
     </div>
 
     <script>
-        // ================= POPULATE SKU OPTIONS (Dibatasi 0-10) =================
+        // ================= POPULATE SKU OPTIONS =================
         function initSKUDropdown() {
             const select = document.getElementById('form-sku');
             select.innerHTML = '<option value="">-- Pilih SKU --</option>';
-            // Looping dibatasi hanya sampai 10 sesuai permintaan
             for (let i = 0; i <= 10; i++) {
                 const skuCode = 'SKU-' + String(i).padStart(3, '0');
                 select.innerHTML += `<option value="${skuCode}">${skuCode}</option>`;
@@ -594,7 +598,6 @@
         initSKUDropdown();
 
         // ================= FITUR AUTO-FILL BERDASARKAN SKU =================
-        // Disesuaikan agar penulisan nama produk sesuai dengan list dropdown baru
         const productMasterList = {
             "SKU-000": { name: "InsulatorZ9Y", category: "BahanBaku" },
             "SKU-001": { name: "BusiZ9Y(Dummy)", category: "BarangJadi" },
@@ -620,8 +623,9 @@
         const DEFAULT_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNydnpqanJicGx1a3B0anlqcGVvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDI5MzgsImV4cCI6MjA5OTk3ODkzOH0.tNmbfsroHet-KhD2u3esr2XFxEP5q3k5zmIhoCVAcdA"; 
 
         const defaultInventory = [
-            {id: 1, sku: 'SKU-000', name: 'InsulatorZ9Y', category: 'BahanBaku', in_stock: 250000, out_stock: 0, quantity: 250000, min_stock: 212263, rack_row: 1, rack_col: 1, rack_level: 2, waktu_masuk: '2026-07-05T12:00', waktu_keluar: ''},
-            {id: 2, sku: 'SKU-001', name: 'BusiZ9Y(Dummy)', category: 'BarangJadi', in_stock: 300000, out_stock: 120000, quantity: 180000, min_stock: 212263, rack_row: 1, rack_col: 2, rack_level: 2, waktu_masuk: '2026-07-05T08:30', waktu_keluar: '2026-07-10T14:15'}
+            {id: 1, sku: 'SKU-000', name: 'InsulatorZ9Y', category: 'BahanBaku', in_stock: 200720, out_stock: 0, quantity: 200720, min_stock: 212263, rack_row: 1, rack_col: 1, rack_level: 1, waktu_masuk: '2026-07-20T21:24', waktu_keluar: ''},
+            {id: 2, sku: 'SKU-000', name: 'InsulatorZ9Y', category: 'BahanBaku', in_stock: 200720, out_stock: 0, quantity: 200720, min_stock: 212263, rack_row: 1, rack_col: 1, rack_level: 2, waktu_masuk: '2026-07-20T21:24', waktu_keluar: ''},
+            {id: 3, sku: 'SKU-000', name: 'InsulatorZ9Y', category: 'BahanBaku', in_stock: 200720, out_stock: 0, quantity: 200720, min_stock: 212263, rack_row: 1, rack_col: 1, rack_level: 3, waktu_masuk: '2026-07-20T21:24', waktu_keluar: ''}
         ];
 
         let inventory = [];
@@ -702,7 +706,7 @@
             document.getElementById('db-url').value = savedUrl;
             document.getElementById('db-key').value = savedKey;
 
-            if (savedUrl && savedKey && savedKey !== "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZweWtla2tkam9jbXBha2x5cHd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MTQwMjQsImV4cCI6MjA5ODE5MDAyNH0.eWDACXjSwHN1XK035A_5ZSEL18iNBsTpUZMcDogQYkM") {
+            if (savedUrl && savedKey) {
                 try {
                     supabaseClient = window.supabase.createClient(savedUrl, savedKey);
                     isUsingCloud = true;
@@ -764,6 +768,7 @@
             updateTableUI();
             populateCategoryFilter();
             sync3DVisualization();
+            renderRackSummaryUI();
         }
 
         function loadLocalFallback() {
@@ -780,7 +785,6 @@
             document.getElementById('live-stock-preview').innerText = res.toLocaleString('id-ID');
         }
 
-        // ================= SYSTEM UTILITIES & WAKTU =================
         function formatDatetimeString(dtString) {
             if (!dtString) return '-';
             const dateObj = new Date(dtString);
@@ -799,7 +803,7 @@
             
             const errorElement = document.getElementById('modal-error-message');
             const errorText = document.getElementById('modal-error-text');
-            errorElement.classList.add('hidden'); // Sembunyikan error sebelumnya
+            errorElement.classList.add('hidden');
             errorElement.classList.remove('animate-pulse');
 
             const form = document.getElementById('item-form');
@@ -810,7 +814,6 @@
             const levelStr = String(formData.get('rack_level')).trim();
             const idVal = formData.get('id');
 
-            // LOGIKA VALIDASI DIPERBAIKI (Tahan banting terhadap tipe data Text vs Int dari Supabase)
             const bentrok = inventory.find(item => {
                 const checkRow = String(item.rack_row).trim();
                 const checkCol = String(item.rack_col).trim();
@@ -822,15 +825,12 @@
                        String(item.id) !== String(idVal);
             });
 
-            // TAMPILKAN ERROR JIKA BENTROK
             if (bentrok) {
                 errorText.innerHTML = `Lokasi [Baris ${rowStr}, Kolom ${colStr}, Tier ${levelStr}] sudah terisi oleh produk <b>'${bentrok.name}'</b>. Pilih lokasi lain.`;
                 errorElement.classList.remove('hidden');
-                
-                // Animasi getar sedikit untuk menarik perhatian
                 errorElement.classList.add('animate-pulse');
                 setTimeout(() => errorElement.classList.remove('animate-pulse'), 800);
-                return; // Stop fungsi disini, data tidak akan dikirim ke Supabase
+                return;
             }
 
             const sku = formData.get('sku');
@@ -850,7 +850,7 @@
                 in_stock, 
                 out_stock, 
                 min_stock, 
-                rack_row: rowStr, // Kirimkan sebagai string yang aman
+                rack_row: rowStr, 
                 rack_col: colStr, 
                 rack_level: levelStr, 
                 waktu_masuk: waktu_masuk,
@@ -949,41 +949,58 @@
             const capacityPercentage = Math.round((inventory.length / 60) * 100);
             document.getElementById('stat-capacity-usage').innerText = capacityPercentage + '%';
             
-            const lowStockItems = inventory.filter(item => {
-                const itemQty = item.quantity !== undefined ? item.quantity : ((item.in_stock || 0) - (item.out_stock || 0));
-                return itemQty < item.min_stock;
-            });
-            document.getElementById('stat-low-stock').innerText = lowStockItems.length;
-
+            // Evaluasi Rak Kritis berdasarkan total seluruh Rak
+            const lowStockAlerts = new Map();
             let totalQty = 0;
-            inventory.forEach(item => { 
+
+            inventory.forEach(item => {
                 const itemQty = item.quantity !== undefined ? item.quantity : ((item.in_stock || 0) - (item.out_stock || 0));
                 totalQty += itemQty; 
+
+                // Akumulasi 1 Rak
+                const rackKey = `${item.rack_row}-${item.rack_col}`;
+                if (!lowStockAlerts.has(rackKey)) {
+                    const rackItems = inventory.filter(i => String(i.rack_row) === String(item.rack_row) && String(i.rack_col) === String(item.rack_col));
+                    const totalRackStock = rackItems.reduce((acc, curr) => {
+                        const qty = curr.quantity !== undefined ? curr.quantity : ((curr.in_stock || 0) - (curr.out_stock || 0));
+                        return acc + qty;
+                    }, 0);
+
+                    if (totalRackStock < item.min_stock) {
+                        lowStockAlerts.set(rackKey, {
+                            row: item.rack_row,
+                            col: item.rack_col,
+                            total: totalRackStock,
+                            out: totalRackStock === 0,
+                            name: item.name
+                        });
+                    }
+                }
             });
+
+            document.getElementById('stat-low-stock').innerText = lowStockAlerts.size;
             document.getElementById('stat-total-qty').innerText = totalQty.toLocaleString('id-ID') + ' Unit';
 
             const alertContainer = document.getElementById('dashboard-stock-alerts');
             alertContainer.innerHTML = '';
             
-            if (lowStockItems.length === 0) {
+            if (lowStockAlerts.size === 0) {
                 alertContainer.innerHTML = `
                     <div class="flex flex-col items-center justify-center h-full text-slate-500 py-16">
                         <i class="fa-regular fa-circle-check text-4xl mb-2 text-emerald-500 animate-pulse"></i>
-                        <p class="text-xs">Kondisi Aman! Tidak ada barang berstok kritis.</p>
+                        <p class="text-xs">Kondisi Aman! Tidak ada Rak yang kekurangan stok.</p>
                     </div>`;
             } else {
-                lowStockItems.slice(0, 5).forEach(item => {
-                    const itemQty = item.quantity !== undefined ? item.quantity : ((item.in_stock || 0) - (item.out_stock || 0));
-                    const isOutOfStock = itemQty === 0;
+                Array.from(lowStockAlerts.values()).slice(0, 5).forEach(alert => {
                     alertContainer.innerHTML += `
-                        <div class="flex items-center justify-between p-3 rounded-xl border ${isOutOfStock ? 'bg-rose-500/5 border-rose-500/20 text-rose-400' : 'bg-amber-500/5 border-amber-500/20 text-amber-400'}">
+                        <div class="flex items-center justify-between p-3 rounded-xl border ${alert.out ? 'bg-rose-500/5 border-rose-500/20 text-rose-400' : 'bg-amber-500/5 border-amber-500/20 text-amber-400'}">
                             <div class="min-w-0 flex-1">
-                                <p class="text-xs font-bold text-white truncate">${item.name}</p>
-                                <p class="text-[10px] text-slate-400">SKU: ${item.sku} | Rak: [B:${item.rack_row} K:${item.rack_col} Tier:${item.rack_level}]</p>
+                                <p class="text-xs font-bold text-white truncate">Rak [Baris ${alert.row} - Kolom ${alert.col}]</p>
+                                <p class="text-[10px] text-slate-400">Total Akumulasi Rak (${alert.name})</p>
                             </div>
                             <div class="text-right ml-2 flex-shrink-0">
-                                <span class="inline-block text-[10px] font-bold px-2 py-1 rounded-md ${isOutOfStock ? 'bg-rose-500/20' : 'bg-amber-500/20'}">
-                                    ${isOutOfStock ? 'Habis' : itemQty.toLocaleString('id-ID') + ' Unit'}
+                                <span class="inline-block text-[10px] font-bold px-2 py-1 rounded-md ${alert.out ? 'bg-rose-500/20' : 'bg-amber-500/20'}">
+                                    ${alert.out ? 'Habis' : alert.total.toLocaleString('id-ID') + ' Unit'}
                                 </span>
                             </div>
                         </div>`;
@@ -1005,21 +1022,29 @@
             inventory.forEach(item => {
                 const itemQty = item.quantity !== undefined ? item.quantity : ((item.in_stock || 0) - (item.out_stock || 0));
                 
-                const isOutOfStock = itemQty === 0;
-                const isLowStock = itemQty < item.min_stock;
-                const isOverstock = itemQty > 861922;
+                // Evaluasi status Kritis berdasarkan Akumulasi Total Rak
+                const rackItems = inventory.filter(i => String(i.rack_row) === String(item.rack_row) && String(i.rack_col) === String(item.rack_col));
+                const totalRackStock = rackItems.reduce((acc, curr) => {
+                    const qty = curr.quantity !== undefined ? curr.quantity : ((curr.in_stock || 0) - (curr.out_stock || 0));
+                    return acc + qty;
+                }, 0);
+
+                const isOutOfStock = totalRackStock === 0;
+                const isLowStock = totalRackStock < item.min_stock;
+                const isOverstock = totalRackStock > 602160;
                 
                 let stockBadgeClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-                let stockText = `${itemQty.toLocaleString('id-ID')} Unit`;
+                let stockText = 'Stock aman';
+                
                 if (isOutOfStock) {
                     stockBadgeClass = 'bg-rose-500/10 text-rose-400 border-rose-500/20 animate-pulse';
-                    stockText = 'Habis';
+                    stockText = 'Stock habis';
                 } else if (isLowStock) {
                     stockBadgeClass = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-                    stockText = `${itemQty.toLocaleString('id-ID')} Unit (Kritis)`;
+                    stockText = 'Stock Kritis';
                 } else if (isOverstock) {
                     stockBadgeClass = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-                    stockText = `${itemQty.toLocaleString('id-ID')} Unit (Overstock)`;
+                    stockText = 'Overstock';
                 }
 
                 tbody.innerHTML += `
@@ -1031,19 +1056,16 @@
                         <td class="px-6 py-4 text-slate-400 text-xs">${item.category}</td>
                         <td class="px-6 py-4 text-xs">
                             <span class="inline-flex items-center px-2 py-1 rounded-md bg-slate-950 text-slate-300 font-semibold border border-slate-800">
-                                Baris ${item.rack_row} - Kolom ${item.rack_col} - Tier ${item.rack_level}
+                                B:${item.rack_row} - K:${item.rack_col} - T:${item.rack_level}
                             </span>
                         </td>
-                        <td class="px-6 py-4 text-xs">
-                            <div class="font-bold text-emerald-400">${item.in_stock || 0} Unit</div>
-                            <div class="text-[10px] text-slate-500 mt-0.5"><i class="fa-regular fa-calendar mr-1"></i>${formatDatetimeString(item.waktu_masuk)}</div>
-                        </td>
-                        <td class="px-6 py-4 text-xs">
-                            <div class="font-bold text-rose-400">${item.out_stock || 0} Unit</div>
-                            <div class="text-[10px] text-slate-500 mt-0.5"><i class="fa-regular fa-calendar mr-1"></i>${formatDatetimeString(item.waktu_keluar)}</div>
+                        <td class="px-6 py-4 text-center text-xs">
+                            <div class="font-bold text-white">${itemQty.toLocaleString('id-ID')} Unit</div>
+                            <div class="text-[10px] text-slate-500 mt-0.5">In: ${(item.in_stock || 0)} | Out: ${(item.out_stock || 0)}</div>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full border ${stockBadgeClass}">
+                            <div class="text-[10px] font-mono text-slate-400 mb-1">Total: ${totalRackStock.toLocaleString('id-ID')}</div>
+                            <span class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${stockBadgeClass}">
                                 ${stockText}
                             </span>
                         </td>
@@ -1112,6 +1134,7 @@
             if (tabName === 'warehouse3d') {
                 setTimeout(() => {
                     init3D('threejs-main-canvas', 'main');
+                    renderRackSummaryUI();
                 }, 100);
             }
         }
@@ -1235,26 +1258,36 @@
             inventory.forEach(item => {
                 const itemQty = item.quantity !== undefined ? item.quantity : ((item.in_stock || 0) - (item.out_stock || 0));
 
+                // ======= PERUBAHAN UTAMA: WARNA BOX DIEVALUASI DARI AKUMULASI 1 RAK =======
+                const rackItems = inventory.filter(i => String(i.rack_row) === String(item.rack_row) && String(i.rack_col) === String(item.rack_col));
+                const totalRackStock = rackItems.reduce((acc, curr) => {
+                    const qty = curr.quantity !== undefined ? curr.quantity : ((curr.in_stock || 0) - (curr.out_stock || 0));
+                    return acc + qty;
+                }, 0);
+
+                const isOut = totalRackStock === 0;
+                const isLow = totalRackStock < item.min_stock;
+                const isOverstock = totalRackStock > 602160;
+
                 if (mode === 'main') {
-                    if (filter3DMode === 'kritis' && itemQty >= item.min_stock) return;
-                    if (filter3DMode === 'aman' && (itemQty < item.min_stock || itemQty > 861922)) return;
-                    if (filter3DMode === 'overstock' && itemQty <= 861922) return;
+                    if (filter3DMode === 'kritis' && !isLow) return;
+                    if (filter3DMode === 'aman' && (isLow || isOverstock || isOut)) return;
+                    if (filter3DMode === 'overstock' && !isOverstock) return;
                 }
 
-                // DIUBAH AGAR MEMASTIKAN DATA TERBACA SEBAGAI ANGKA
                 const z = (Number(item.rack_row) - 2.5) * rowSpacing; 
                 const x = (Number(item.rack_col) - 3) * colSpacing;
                 const y = (Number(item.rack_level) * levelHeight) + 0.52; 
 
                 const boxGeo = new THREE.BoxGeometry(1.2, 0.9, 0.8);
                 
-                let boxColor = 0x10b981; 
-                if (itemQty === 0) {
-                    boxColor = 0xf43f5e; 
-                } else if (itemQty < item.min_stock) {
-                    boxColor = 0xf59e0b; 
-                } else if (itemQty > 861922) {
-                    boxColor = 0x3b82f6; 
+                let boxColor = 0x10b981; // Hijau (Aman)
+                if (isOut) {
+                    boxColor = 0xf43f5e; // Merah (Habis)
+                } else if (isLow) {
+                    boxColor = 0xf59e0b; // Kuning (Kritis)
+                } else if (isOverstock) {
+                    boxColor = 0x3b82f6; // Biru (Overstock)
                 }
 
                 const boxMaterial = new THREE.MeshStandardMaterial({
@@ -1262,8 +1295,8 @@
                     map: createLabelTexture(item.name), 
                     roughness: 0.45,
                     metalness: 0.05,
-                    transparent: itemQty === 0,
-                    opacity: itemQty === 0 ? 0.3 : 1.0
+                    transparent: isOut,
+                    opacity: isOut ? 0.3 : 1.0
                 });
 
                 const boxMesh = new THREE.Mesh(boxGeo, boxMaterial);
@@ -1328,19 +1361,32 @@
             }
         }
 
+        // ================= MENAMPILKAN DETAIL =================
         function displaySelectedItemDetails(item) {
             const container = document.getElementById('selected-rack-info');
             const itemQty = item.quantity !== undefined ? item.quantity : ((item.in_stock || 0) - (item.out_stock || 0));
             
-            const isLow = itemQty < item.min_stock;
-            const isOut = itemQty === 0;
-            const isOverstock = itemQty > 861923;
+            // Hitung akumulasi stok 1 Rak
+            const rackItems = inventory.filter(i => String(i.rack_row) === String(item.rack_row) && String(i.rack_col) === String(item.rack_col));
+            const totalRackStock = rackItems.reduce((acc, curr) => {
+                const qty = curr.quantity !== undefined ? curr.quantity : ((curr.in_stock || 0) - (curr.out_stock || 0));
+                return acc + qty;
+            }, 0);
 
-            let statusLabel = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400">AMAN</span>';
+            const singleTierCap = 200720;
+            const totalRackCap = singleTierCap * 3; // 602.160 Unit
+            const rackPct = Math.min(100, Math.round((totalRackStock / totalRackCap) * 100));
+
+            // ======= STATUS BADGE SEKARANG MENGIKUTI TOTAL RAK =======
+            const isLow = totalRackStock < item.min_stock;
+            const isOut = totalRackStock === 0;
+            const isOverstock = totalRackStock > 602160;
+
+            let statusLabel = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400">STOCK AMAN</span>';
             if (isOut) {
-                statusLabel = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400">HABIS</span>';
+                statusLabel = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400">STOCK HABIS</span>';
             } else if (isLow) {
-                statusLabel = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400">KRITIS (REORDER)</span>';
+                statusLabel = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400">STOCK KRITIS</span>';
             } else if (isOverstock) {
                 statusLabel = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-400">OVERSTOCK</span>';
             }
@@ -1368,23 +1414,39 @@
 
                     <div class="grid grid-cols-2 gap-2 text-xs text-slate-400 border-t border-slate-800/60 pt-2">
                         <div>
-                            <p class="text-[10px] text-slate-500">Total Masuk</p>
+                            <p class="text-[10px] text-slate-500">Masuk (Tier Ini)</p>
                             <p class="font-medium text-emerald-400 mt-0.5">${(item.in_stock || 0).toLocaleString('id-ID')}</p>
                         </div>
                         <div>
-                            <p class="text-[10px] text-slate-500">Total Keluar</p>
+                            <p class="text-[10px] text-slate-500">Keluar (Tier Ini)</p>
                             <p class="font-medium text-rose-400 mt-0.5">${(item.out_stock || 0).toLocaleString('id-ID')}</p>
                         </div>
                     </div>
 
                     <div class="border-t border-slate-800/60 pt-3">
                         <div class="flex justify-between text-xs mb-1">
-                            <span class="text-slate-400">Sisa Stok Saat Ini:</span>
-                            <span class="font-bold text-white">${itemQty.toLocaleString('id-ID')} / ${item.min_stock.toLocaleString('id-ID')} Min</span>
+                            <span class="text-slate-400">Sisa Stok Tier Ini (Tier ${item.rack_level}):</span>
+                            <span class="font-bold text-white">${itemQty.toLocaleString('id-ID')} / ${singleTierCap.toLocaleString('id-ID')}</span>
                         </div>
                     </div>
 
-                    <div class="bg-indigo-950/20 border border-indigo-500/10 p-2.5 rounded-lg">
+                    <!-- KOTAK AKUMULASI 1 RAK (3 TIER) -->
+                    <div class="bg-indigo-950/40 border border-indigo-500/30 p-3 rounded-xl space-y-2">
+                        <p class="text-[11px] text-indigo-300 font-bold uppercase tracking-wider flex items-center justify-between">
+                            <span><i class="fa-solid fa-layer-group text-indigo-400 mr-1"></i> Akumulasi 1 Rak (3 Tier)</span>
+                            <span class="text-xs text-indigo-200 font-mono">${rackPct}%</span>
+                        </p>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-400">Baris ${item.rack_row}, Kolom ${item.rack_col}:</span>
+                            <span class="font-extrabold text-white text-sm">${totalRackStock.toLocaleString('id-ID')} <span class="text-[10px] text-slate-400 font-normal">/ 602.160</span></span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+                            <div class="bg-indigo-500 h-2 rounded-full transition-all duration-500" style="width: ${rackPct}%"></div>
+                        </div>
+                        <p class="text-[10px] text-slate-400 italic">Target Batas Minimum Rak: ${item.min_stock.toLocaleString('id-ID')} Unit</p>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg">
                         <p class="text-[10px] text-indigo-400 font-bold uppercase tracking-wider mb-1"><i class="fa-solid fa-map-location-dot"></i> Koordinat Posisi:</p>
                         <p class="text-xs text-slate-200">Baris (Row) <strong class="text-white">${item.rack_row}</strong>, Kolom <strong class="text-white">${item.rack_col}</strong>, Tier <strong class="text-white">${item.rack_level}</strong></p>
                     </div>
@@ -1399,6 +1461,66 @@
                     </button>
                 </div>
             `;
+        }
+
+        // ================= MENAMPILKAN RINGKASAN STOK =================
+        function renderRackSummaryUI() {
+            const container = document.getElementById('rack-summary-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+            const singleCap = 200720;
+            const totalRackCap = singleCap * 3; // 602.160 Unit
+
+            for (let row = 1; row <= 4; row++) {
+                let rowTotalStock = 0;
+                let rowCardsHtml = '';
+
+                for (let col = 1; col <= 5; col++) {
+                    const rackItems = inventory.filter(i => String(i.rack_row) === String(row) && String(i.rack_col) === String(col));
+                    const rackStock = rackItems.reduce((acc, curr) => {
+                        const qty = curr.quantity !== undefined ? curr.quantity : ((curr.in_stock || 0) - (curr.out_stock || 0));
+                        return acc + qty;
+                    }, 0);
+
+                    rowTotalStock += rackStock;
+                    const pct = Math.min(100, Math.round((rackStock / totalRackCap) * 100));
+
+                    rowCardsHtml += `
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-850 flex items-center justify-between text-xs">
+                            <div>
+                                <p class="font-semibold text-slate-300">Kolom ${col}</p>
+                                <p class="text-[10px] text-slate-500">${rackItems.length} / 3 Tier Terisi</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-mono font-bold text-indigo-400">${rackStock.toLocaleString('id-ID')} unit</p>
+                                <p class="text-[10px] text-slate-400">${pct}% Kapasitas</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const rowCapTotal = totalRackCap * 5;
+                const rowPct = Math.min(100, Math.round((rowTotalStock / rowCapTotal) * 100));
+
+                container.innerHTML += `
+                    <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl space-y-3 shadow-md">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                            <span class="font-bold text-sm text-white flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span> Baris ${row}
+                            </span>
+                            <span class="text-xs font-mono font-bold text-indigo-400">${rowTotalStock.toLocaleString('id-ID')} unit</span>
+                        </div>
+                        <div class="space-y-2">
+                            ${rowCardsHtml}
+                        </div>
+                        <div class="pt-1 border-t border-slate-850 text-[10px] text-slate-400 flex justify-between">
+                            <span>Total Terisi Baris ${row}:</span>
+                            <span class="font-semibold text-slate-300">${rowPct}% Terpakai</span>
+                        </div>
+                    </div>
+                `;
+            }
         }
 
         function set3DFilter(type) {
@@ -1472,7 +1594,6 @@
             const form = document.getElementById('item-form');
             form.reset();
 
-            // Sembunyikan pesan error saat modal baru dibuka
             document.getElementById('modal-error-message').classList.add('hidden');
             document.getElementById('modal-error-message').classList.remove('animate-pulse');
 
